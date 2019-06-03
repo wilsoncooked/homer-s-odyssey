@@ -1,14 +1,28 @@
 import React, {Component} from 'react';
+import {withStyles} from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  textField: {
+    margin: '10px',
+    width: '300px',
+  },
+});
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
       firstName: '',
-      lastName: 'Bond',
-      email: 'mon@email.com',
-      password: 'monPassw0rd',
-      passwordRep: 'monPassw0rd',
+      lastName: '',
+      email: '',
+      password: '',
+      passwordRep: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,22 +34,54 @@ class SignUp extends Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     console.log(this.state);
   }
 
   render() {
+    const {classes} = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={classes.root} onSubmit={this.handleSubmit}>
         <h1>{JSON.stringify(this.state, 1, 1)}</h1>
-        <input type='text' name='firstName' />
-        <input type='text' name='lastName' />
-        <input type='email' name='email' onChange={this.handleChange} />
-        <input type='password' name='password' />
-        <input type='password' name='passwordRep' />
+        <TextField
+          className={classes.textField}
+          label='First Name'
+          type='text'
+          name='firstName'
+          onChange={this.handleChange}
+        />
+        <TextField
+          className={classes.textField}
+          label='Last Name'
+          type='text'
+          name='lastName'
+          onChange={this.handleChange}
+        />
+        <TextField
+          className={classes.textField}
+          label='Email'
+          type='email'
+          name='email'
+          onChange={this.handleChange}
+        />
+        <TextField
+          className={classes.textField}
+          label='Password'
+          type='password'
+          name='passwordRep'
+          onChange={this.handleChange}
+        />
+        <TextField
+          className={classes.textField}
+          label='Password'
+          type='password'
+          name='password'
+          onChange={this.handleChange}
+        />
         <input type='submit' value='Submit' />
       </form>
     );
   }
 }
 
-export default SignUp;
+export default withStyles(styles)(SignUp);
