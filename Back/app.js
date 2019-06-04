@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 const authRouter = require('./routes/auth/auth');
+// const connection = require('./helpers/db.js');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
