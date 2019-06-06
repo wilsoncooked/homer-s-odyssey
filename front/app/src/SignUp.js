@@ -6,7 +6,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   textField: {
     margin: '10px',
@@ -23,6 +23,7 @@ class SignUp extends Component {
       email: '',
       password: '',
       passwordRep: '',
+      flash: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,7 +36,26 @@ class SignUp extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    fetch('/auth/signup', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+      body: JSON.stringify(this.state),
+    })
+      .then(res => res.json())
+      .then(
+        res => this.setState({flash: res.flash}),
+        err => this.setState({flash: err.flash}),
+      );
+    this.setState({
+      name: '',
+      lastname: '',
+      email: '',
+      password: '',
+      passwordRep: '',
+      flash: '',
+    });
   }
 
   render() {

@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require('../node_modules/mysql');
 
 const connection = mysql.createConnection({
   host: 'localhost',
