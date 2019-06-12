@@ -9,25 +9,24 @@ import purple from '@material-ui/core/colors/purple';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slide from '@material-ui/core/Slide';
+import {Link} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
     flexGrow: 1,
-    padding: '0px 30px',
   },
   textField: {
     margin: '20px 0px',
     width: '100%',
   },
   submit: {
-    alignSelf: 'flex-end',
     margin: '20px 0px',
+    textDecoration: 'none',
   },
-  margin: {
-    margin: theme.spacing.unit,
+  signin: {
+    margin: '20px 0px',
+    textDecoration: 'none',
   },
   cssLabel: {
     '&$cssFocused': {
@@ -119,51 +118,63 @@ class SignUp extends React.Component {
         {/* <h1>{JSON.stringify(this.state, 1, 1)}</h1> */}
         <MuiThemeProvider theme={theme}>
           <form className={classes.root} onSubmit={this.handleSubmit}>
-            <TextField
-              className={classes.textField}
-              label='First Name'
-              type='text'
-              name='name'
-              onChange={this.handleChange}
-            />
-            <TextField
-              className={classes.textField}
-              label='Last Name'
-              type='text'
-              name='lastname'
-              onChange={this.handleChange}
-            />
-            <TextField
-              className={classes.textField}
-              label='Email'
-              type='email'
-              name='email'
-              onChange={this.handleChange}
-            />
-            <TextField
-              className={classes.textField}
-              label='Password'
-              type='password'
-              name='password'
-              onChange={this.handleChange}
-            />
-            <TextField
-              className={classes.textField}
-              label='Password'
-              type='password'
-              name='passwordbis'
-              onChange={this.handleChange}
-            />
-            <Button
-              type='submit'
-              value='Submit'
-              variant='contained'
-              size='large'
-              color='primary'
-              className={classes.submit}
-              onClick={this.handleClick(TransitionDown)}>
-              Submit
-            </Button>
+            <Grid container justify='center'>
+              <Grid item xs={10}>
+                <TextField
+                  className={classes.textField}
+                  label='First Name'
+                  type='text'
+                  name='name'
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  className={classes.textField}
+                  label='Last Name'
+                  type='text'
+                  name='lastname'
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  className={classes.textField}
+                  label='Email'
+                  type='email'
+                  name='email'
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  className={classes.textField}
+                  label='Password'
+                  type='password'
+                  name='password'
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  className={classes.textField}
+                  label='Password'
+                  type='password'
+                  name='passwordbis'
+                  onChange={this.handleChange}
+                />
+              </Grid>
+              <Grid xs={10} container justify='space-between' align='center'>
+                <Link className={classes.signin} to='/signin'>
+                  <Button size='large' color='primary'>
+                    Sing In
+                  </Button>
+                </Link>
+                <Link className={classes.submit} to='/'>
+                  <Button
+                    type='submit'
+                    value='Submit'
+                    variant='contained'
+                    size='large'
+                    color='primary'
+                    onClick={this.handleClick(TransitionDown)}>
+                    Submit
+                  </Button>
+                </Link>
+              </Grid>
+            </Grid>
           </form>
           <Snackbar
             open={this.state.open}

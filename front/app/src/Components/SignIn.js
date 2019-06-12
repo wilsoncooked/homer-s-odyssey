@@ -7,24 +7,24 @@ import {
 import TextField from '@material-ui/core/TextField';
 import purple from '@material-ui/core/colors/purple';
 import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    width: '80%',
+    flexGrow: 1,
   },
   textField: {
     margin: '20px 0px',
-    width: 'flex-grow',
+    width: '100%',
   },
   submit: {
-    alignSelf: 'flex-end',
-    margin: '20px 0px',
+    margin: '35px 0px',
+    textDecoration: 'none',
   },
-  margin: {
-    margin: theme.spacing.unit,
+  signup: {
+    textDecoration: 'none',
+    margin: '35px 0px',
   },
   cssLabel: {
     '&$cssFocused': {
@@ -97,29 +97,47 @@ class SignIn extends React.Component {
         {/* <h1>{JSON.stringify(this.state, 1, 1)}</h1> */}
         <MuiThemeProvider theme={theme}>
           <form className={classes.root} onSubmit={this.handleSubmit}>
-            <TextField
-              className={classes.textField}
-              label='Email'
-              type='email'
-              name='email'
-              onChange={this.handleChange}
-            />
-            <TextField
-              className={classes.textField}
-              label='Password'
-              type='password'
-              name='password'
-              onChange={this.handleChange}
-            />
-            <Button
-              type='submit'
-              value='Submit'
-              variant='contained'
-              size='large'
-              color='primary'
-              className={classes.submit}>
-              Sign In
-            </Button>
+            <Grid container justify='center'>
+              <Grid item xs={10}>
+                <TextField
+                  className={classes.textField}
+                  label='Email'
+                  type='email'
+                  name='email'
+                  onChange={this.handleChange}
+                />
+              </Grid>
+              <Grid xs={10}>
+                <TextField
+                  className={classes.textField}
+                  label='Password'
+                  type='password'
+                  alignItems
+                  name='password'
+                  onChange={this.handleChange}
+                />
+              </Grid>
+              <Grid xs={10} container justify='space-between'>
+                <Link className={classes.signup} to='/signup'>
+                  <Button
+                    className={classes.button}
+                    size='large'
+                    color='primary'>
+                    Sing Up?
+                  </Button>
+                </Link>
+                <Link className={classes.submit} to='/profile'>
+                  <Button
+                    type='submit'
+                    value='Submit'
+                    variant='contained'
+                    size='large'
+                    color='primary'>
+                    Sign In
+                  </Button>
+                </Link>
+              </Grid>
+            </Grid>
           </form>
         </MuiThemeProvider>
       </React.Fragment>
@@ -131,4 +149,4 @@ class SignIn extends React.Component {
 //   classes: PropTypes.object.isRequired,
 // };
 
-export default withStyles(styles)(Signin);
+export default withStyles(styles)(SignIn);
