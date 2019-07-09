@@ -67,15 +67,10 @@ class SignUp extends React.Component {
       password: '',
       passwordbis: '',
       flash: '',
-      open: 'false',
+      open: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
   }
 
   handleSubmit(e) {
@@ -104,11 +99,26 @@ class SignUp extends React.Component {
   }
 
   handleClick = Transition => () => {
+    // e.preventDefault();
     this.setState({open: true, Transition});
   };
 
   handleClose = () => {
     this.setState({open: false});
+  };
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  delayRedirect = event => {
+    const {
+      history: {push},
+    } = this.props;
+    event.preventDefault();
+    setTimeout(() => push(), 1000);
   };
 
   render() {
@@ -159,7 +169,7 @@ class SignUp extends React.Component {
               <Grid xs={10} container justify='space-between' align='center'>
                 <Link className={classes.signin} to='/signin'>
                   <Button size='large' color='primary'>
-                    Sing In
+                    Already signed up?
                   </Button>
                 </Link>
                 <Link className={classes.submit} to='/'>
